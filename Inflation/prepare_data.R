@@ -75,9 +75,9 @@ categories_small_adapt <- read_excel("Daten/Inflation_ListeKategorien_Stufe4.xls
 
 inflation_treiber <- merge(inflation_treiber,categories_small_adapt,by="Position_D",all.x = TRUE)
 
-inflation_treiber$Position_D <- inflation_treiber$Begriff_vereinfacht_D
-inflation_treiber$Position_F.x <- inflation_treiber$Begriff_vereinfacht_F
-inflation_treiber$Posizione_I.x <- inflation_treiber$Begriff_vereinfacht_I
+inflation_treiber$Position_D <- paste0("<b>",inflation_treiber$Begriff_vereinfacht_D,"</b>")
+inflation_treiber$Position_F.x <- paste0("<b>",inflation_treiber$Begriff_vereinfacht_F,"</b>")
+inflation_treiber$Posizione_I.x <- paste0("<b>",inflation_treiber$Begriff_vereinfacht_I,"</b>")
 inflation_treiber <- inflation_treiber[,1:4]
 
 write.csv(inflation_treiber,file="Output/inflation_treiber.csv",row.names = FALSE,fileEncoding="UTF-8")

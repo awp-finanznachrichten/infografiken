@@ -132,6 +132,13 @@ chart_id <- "JKbiz"
 
 setwd("./Grafiken")
 
+###Flexible Grafik-Bausteine erstellen
+title_text <- paste0("Entwicklung der Schweizer Preise im ",month," ",year)
+
+#Grafik anpassen
+dw_edit_chart(chart_id,
+              title = title_text)
+
 #Create Folder
 folder_name <- paste0(year,"_",month,"_Teuerung_Hauptkategorien")
 dir.create(folder_name)
@@ -184,6 +191,14 @@ chart_id <- "txIFJ"
 
 setwd("./Grafiken")
 
+###Flexible Grafik-Bausteine erstellen
+title_text <- paste0("Die zehn grössten Teuerungstreiber im ",month," ",year)
+
+#Grafik anpassen
+dw_edit_chart(chart_id,
+              title = title_text)
+
+
 #Create Folder
 folder_name <- paste0(year,"_",month,"_Teuerung_Treiber")
 dir.create(folder_name)
@@ -234,6 +249,28 @@ setwd("..")
 chart_id <- "Bql2R"
 
 setwd("./Grafiken")
+
+
+###Flexible Grafik-Bausteine erstellen
+undertitel_text <- paste0("<b>Harmonisierter Verbraucherpreisindex, ",month," ",year,"</b>")
+
+#Text in Grafik anpassen
+text_grafik <- paste0("EU Gesamt\n",
+                      gsub("[.]",",",eu_gesamt),"%\n\n",
+                      "Eurozone\n",
+                      gsub("[.]",",",eurozone),"%\n\n",
+                      "Schweiz\n",
+                      gsub("[.]",",",schweiz),"%"
+                      )
+
+chart_metadata <- dw_retrieve_chart_metadata(chart_id)
+
+adapted_list <- chart_metadata[["content"]][["metadata"]][["visualize"]]
+adapted_list$`text-annotations`[[1]]$text <- text_grafik
+
+dw_edit_chart(chart_id,
+              intro = undertitel_text,
+              visualize = adapted_list)
 
 #Create Folder
 folder_name <- paste0(year,"_",month,"_Teuerung_Europa")

@@ -323,8 +323,8 @@ zip::zip(zipfile = 'Teuerung_Europa_DEU.zip',
          c("Teuerung_Europa.eps","Teuerung_Europa.svg","preview.jpg","metadata.properties"), mode="cherry-pick")
 
 #Daten hochladen
-#ftp_adress <- "ftp://ftp.keystone.ch/Teuerung_Europa_DEU.zip"
-#ftpUpload("Teuerung_Europa_DEU.zip", ftp_adress,userpwd="keyg_in:5r6368vz")
+ftp_adress <- "ftp://ftp.keystone.ch/Teuerung_Europa_DEU.zip"
+ftpUpload("Teuerung_Europa_DEU.zip", ftp_adress,userpwd="keyg_in:5r6368vz")
 
 setwd("..")
 setwd("..")

@@ -65,7 +65,7 @@ metadata <- paste0("i5_object_name=GRAFIK TEUERUNG IN DER SCHWEIZ IN DEN LETZTEN
 cat(metadata,file="metadata.properties")
 
 #Zip-File erstellen
-zip::zip(zipfile = 'Teuerung_Entwicklung.zip', 
+zip::zip(zipfile = 'Teuerung_Entwicklung_DEU.zip', 
          c("Teuerung_Entwicklung.eps","Teuerung_Entwicklung.svg","preview.jpg","metadata.properties"), mode="cherry-pick")
 
 #Daten hochladen
@@ -79,6 +79,14 @@ setwd("..")
 chart_id <- "K22wH"
 
 setwd("./Grafiken")
+
+###Flexible Grafik-Bausteine erstellen
+undertitel_text <- paste0("Im ",month," ",year," waren die Konsumgüter in der Schweiz<b>",
+                          gsub("[.]",",",inflation_last_five_years$values[nrow(inflation_last_five_years)]),"%</b> teurer als vor einem Jahr")
+
+#Grafik anpassen
+dw_edit_chart(chart_id,
+              intro=undertitel_text)
 
 #Create Folder
 folder_name <- paste0(year,"_",month,"_Teuerung_Entwicklung_Langzeit")
@@ -116,7 +124,7 @@ metadata <- paste0("i5_object_name=GRAFIK TEUERUNG IN DER SCHWEIZ IM LANGJÄHRIGE
 cat(metadata,file="metadata.properties")
 
 #Zip-File erstellen
-zip::zip(zipfile = 'Teuerung_Entwicklung_Langzeit.zip', 
+zip::zip(zipfile = 'Teuerung_Entwicklung_Langzeit_DEU.zip', 
          c("Teuerung_Entwicklung_Langzeit.eps","Teuerung_Entwicklung_Langzeit.svg","preview.jpg","metadata.properties"), mode="cherry-pick")
 
 #Daten hochladen
@@ -175,7 +183,7 @@ metadata <- paste0("i5_object_name=GRAFIK ENTWICKLUNG DER SCHWEIZER PREISE IM ",
 cat(metadata,file="metadata.properties")
 
 #Zip-File erstellen
-zip::zip(zipfile = 'Teuerung_Hauptkategorien.zip', 
+zip::zip(zipfile = 'Teuerung_Hauptkategorien_DEU.zip', 
          c("Teuerung_Hauptkategorien.eps","Teuerung_Hauptkategorien.svg","preview.jpg","metadata.properties"), mode="cherry-pick")
 
 #Daten hochladen
@@ -235,7 +243,7 @@ metadata <- paste0("i5_object_name=GRAFIK DIE ZEHN GRÖSSTEN TEUERUNGSTREIBER IM 
 cat(metadata,file="metadata.properties")
 
 #Zip-File erstellen
-zip::zip(zipfile = 'Teuerung_Treiber.zip', 
+zip::zip(zipfile = 'Teuerung_Treiber_DEU.zip', 
          c("Teuerung_Treiber.eps","Teuerung_Treiber.svg","preview.jpg","metadata.properties"), mode="cherry-pick")
 
 #Daten hochladen

@@ -6,7 +6,7 @@ library(readr)
 setwd("C:/Users/sw/OneDrive/R/infografiken/Inflation")
 
 ###Verlauf Jahresteuerung
-monat <- "2022-05-01"
+monat <- "2022-06-01"
 inflation_months <- read_excel("Daten/su-d-05.02.67.xlsx", 
                             sheet = "VAR_m-12")
 

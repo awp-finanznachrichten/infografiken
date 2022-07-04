@@ -264,8 +264,8 @@ year <- format(Sys.Date()-30,"%Y")
 
 
 ###Flexible Grafik-Bausteine erstellen
-undertitel_text <- paste0("<b>Harmonisierter Verbraucherpreisindex, Schätzungen ",month," ",year,"</b><br>
-                           Die Schweizer Inflation wurde zwecks vergleichbarkeit an die Eurostat-Methodik angepasst.")
+undertitel_text <- paste0("<b>Harmonisierter Verbraucherpreisindex der Eurozone, Schätzungen ",month," ",year,"</b><br>
+                           Die Schweizer Inflation wurde zwecks Vergleichbarkeit an die Eurostat-Methodik angepasst.")
 
 #Text in Grafik anpassen
 text_grafik <- paste0("Eurozone\n",
@@ -319,7 +319,7 @@ metadata <- paste0("i5_object_name=GRAFIK INFLATION IN EUROPA D\n",
 cat(metadata,file="metadata.properties")
 
 #Zip-File erstellen
-zip::zip(zipfile = 'Teuerung_Europa.zip', 
+zip::zip(zipfile = 'Teuerung_Europa_DEU.zip', 
          c("Teuerung_Europa.eps","Teuerung_Europa.svg","preview.jpg","metadata.properties"), mode="cherry-pick")
 
 #Daten hochladen

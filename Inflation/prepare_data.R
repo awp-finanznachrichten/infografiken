@@ -6,7 +6,9 @@ library(readr)
 setwd("C:/Users/sw/OneDrive/R/infografiken/Inflation")
 
 ###Verlauf Jahresteuerung
-monat <- "2022-06-01"
+month <- format(Sys.Date()-30,"%m")
+year <- format(Sys.Date()-30,"%Y")
+monat <- paste0(year,"-",month,"-01")
 inflation_months <- read_excel("Daten/su-d-05.02.67.xlsx", 
                             sheet = "VAR_m-12")
 
@@ -82,6 +84,10 @@ write.csv(inflation_treiber,file="Output/inflation_treiber.csv",row.names = FALS
 
 ###Inflation in Europa
 europe_data <- read_csv("Daten/prc_hicp_manr__custom_118059_page_linear.csv")
+
+month <- format(Sys.Date()-60,"%m")
+year <- format(Sys.Date()-60,"%Y")
+monat <- paste0(year,"-",month,"-01")
 
 europe_data_month <- europe_data %>%
   filter(TIME_PERIOD == substring(monat,1, nchar(monat)-3)) %>%

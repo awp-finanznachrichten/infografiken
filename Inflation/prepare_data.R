@@ -30,8 +30,6 @@ inflation_history$values <- format(round(as.numeric(inflation_history$values),1)
 
 write.csv(inflation_history,file="Output/inflation_history.csv",row.names = FALSE)
 
-
-
 ###Teuerung 12 Kategorien
 inflation_categories <- read_excel("Daten/su-d-05.02.11.xlsx", skip = 3)
 
@@ -94,3 +92,4 @@ eurozone <- as.numeric(europe_data_month[europe_data_month$geo == "EA",2])
 schweiz <- as.numeric(europe_data_month[europe_data_month$geo == "CH",2])
 
 write.csv(europe_data_month,file="Output/inflation_europa.csv",row.names = FALSE,fileEncoding="UTF-8")
+

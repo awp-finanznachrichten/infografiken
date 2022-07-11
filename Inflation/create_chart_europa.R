@@ -10,7 +10,7 @@ setwd("C:/Users/sw/OneDrive/R/infografiken/Inflation")
 datawrapper_auth("BMcG33cGBCp2FpqF1BSN5lHhKrw2W8Ait4AYbDEjkjVgCiWe07iqoX5pwHXdW36g", overwrite = TRUE)
 
 ###Grafik Europa
-chart_id <- "Bql2R"
+chart_id <- "klNuM"
 
 setwd("./Grafiken")
 
@@ -20,7 +20,8 @@ year <- format(Sys.Date()-30,"%Y")
 
 
 ###Flexible Grafik-Bausteine erstellen
-undertitel_text <- paste0("<b>Harmonisierter Verbraucherpreisindex, ",month," ",year,"</b>")
+undertitel_text <- paste0("<b>Harmonisierter Verbraucherpreisindex der Eurozone, ",month," ",year,"</b><br>
+                           Die Schweizer Inflation wurde zwecks Vergleichbarkeit an die Eurostat-Methodik angepasst.")
 
 #Text in Grafik anpassen
 text_grafik <- paste0("EU Gesamt\n",
@@ -41,7 +42,7 @@ dw_edit_chart(chart_id,
               visualize = adapted_list)
 
 #Create Folder
-folder_name <- paste0(year,"_",month,"_Teuerung_Europa")
+folder_name <- paste0(year,"_",month,"_Teuerung_Europa_all")
 dir.create(folder_name)
 
 setwd(paste0("./",folder_name))
@@ -53,9 +54,9 @@ image_write(map,path="preview.jpg",format="jpeg")
 
 #Als SVG &  EPS
 map <- dw_export_chart(chart_id , type="svg",plain=FALSE,border_width = 20)
-cat(map,file="Teuerung_Europa.svg")
+cat(map,file="Teuerung_Europa_all.svg")
 map <- charToRaw(map)
-rsvg_eps(map,"Teuerung_Europa.eps",width=4800)
+rsvg_eps(map,"Teuerung_Europa_all.eps",width=4800)
 
 
 #Metadata
@@ -76,8 +77,8 @@ metadata <- paste0("i5_object_name=GRAFIK INFLATION IN EUROPA D\n",
 cat(metadata,file="metadata.properties")
 
 #Zip-File erstellen
-zip::zip(zipfile = 'Teuerung_Europa.zip', 
-         c("Teuerung_Europa.eps","Teuerung_Europa.svg","preview.jpg","metadata.properties"), mode="cherry-pick")
+zip::zip(zipfile = 'Teuerung_Europa_all_DEU.zip', 
+         c("Teuerung_Europa_all.eps","Teuerung_Europa_all.svg","preview.jpg","metadata.properties"), mode="cherry-pick")
 
 #Daten hochladen
 #ftp_adress <- "ftp://ftp.keystone.ch/Teuerung_Europa_DEU.zip"

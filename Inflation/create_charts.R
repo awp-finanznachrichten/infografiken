@@ -304,7 +304,7 @@ rsvg_eps(map,"Teuerung_Europa.eps",width=4800)
 #Metadata
 metadata <- paste0("i5_object_name=GRAFIK INFLATION IN EUROPA D\n",
                    "i55_date_created=",format(Sys.Date(),"%Y%m%d"),"\n",
-                   "i120_caption=INFOGRAFIK - Harmonisierter Verbraucherpreisindex im ",month," ",year,". Diese Infografik wurde automatisiert vom Schreibroboter Lena erstellt.\n",
+                   "i120_caption=INFOGRAFIK - Schätzungen Harmonisierter Verbraucherpreisindex im ",month," ",year,". Diese Infografik wurde automatisiert vom Schreibroboter Lena erstellt.\n",
                    "i103_original_transmission_reference=\n",
                    "i90_city=\n",
                    "i100_country_code=CHE\n",

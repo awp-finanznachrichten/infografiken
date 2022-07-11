@@ -21,4 +21,3 @@ eurozone <- as.numeric(europe_data_month[europe_data_month$geo == "EA",2])
 schweiz <- as.numeric(europe_data_month[europe_data_month$geo == "CH",2])
 
 write.csv(europe_data_month,file="Output/inflation_europa_all.csv",row.names = FALSE,fileEncoding="UTF-8")
-

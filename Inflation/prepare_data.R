@@ -95,7 +95,13 @@ europe_data_month <- europe_data %>%
   select(geo,OBS_VALUE)
 
 #Add Swiss Value
-ch_hvpi <- 3.2
+hvpi_data <- read_excel("Daten/cc-d-05.08.10.xlsx", 
+                               sheet = 3)
+
+hvpi_data <- hvpi_data %>%
+  filter(`Office fédéral de la statistique (OFS)` == year)
+
+ch_hvpi <- as.numeric(hvpi_data[,month(Sys.Date())])
 europe_data_month[nrow(europe_data_month) + 1,] <- list("CH",ch_hvpi)
 
 #eu_gesamt <- as.numeric(europe_data_month[europe_data_month$geo == "EU",2])

@@ -2,6 +2,7 @@ library(readxl)
 library(dplyr)
 library(xlsx)
 library(readr)
+library(httr)
 
 setwd("C:/Users/sw/OneDrive/R/infografiken/Inflation")
 
@@ -9,13 +10,22 @@ setwd("C:/Users/sw/OneDrive/R/infografiken/Inflation")
 month <- format(Sys.Date()-30,"%m")
 year <- format(Sys.Date()-30,"%Y")
 monat <- paste0(year,"-",month,"-01")
-inflation_months <- read_excel("Daten/su-d-05.02.67.xlsx", 
-                            sheet = "VAR_m-12")
+
+#Get Inflationsdaten
+inflation_data_get <- GET("https://dam-api.bfs.admin.ch/hub/api/dam/assets/22987794/master")
+inflation_data_raw <- content(inflation_data_get)
+
+filename <- tempfile(fileext = ".xlsx")
+writeBin(inflation_data_raw,filename)
+inflation_months <- read_xlsx(path=filename,
+                              sheet = "VAR_m-12")
+
+#inflation_months <- read_excel("Daten/su-d-05.02.67.xlsx", 
+#                            sheet = "VAR_m-12")
 
 #Letzte 5 Jahre
 sequence_months <- seq(as.Date("2017-06-01"),as.Date(monat),by="month")
 values <- unlist(inflation_months[4,(ncol(inflation_months)-(length(sequence_months)-1)):ncol(inflation_months)])
-
 
 inflation_last_five_years <- data.frame(sequence_months,values)
 inflation_last_five_years$values <- format(round(as.numeric(inflation_last_five_years$values),1),nsmall=1)
@@ -33,7 +43,17 @@ inflation_history$values <- format(round(as.numeric(inflation_history$values),1)
 write.csv(inflation_history,file="Output/inflation_history.csv",row.names = FALSE)
 
 ###Teuerung 12 Kategorien
-inflation_categories <- read_excel("Daten/su-d-05.02.11.xlsx", skip = 3)
+
+#Get Inflation Data
+inflation_categories_get <- GET("https://dam-api.bfs.admin.ch/hub/api/dam/assets/22987789/master")
+inflation_categories_raw <- content(inflation_categories_get)
+
+filename <- tempfile(fileext = ".xlsx")
+writeBin(inflation_categories_raw,filename)
+inflation_categories <- read_xlsx(path=filename,
+                              skip = 3)
+
+#inflation_categories <- read_excel("Daten/su-d-05.02.11.xlsx", skip = 3)
 
 inflation_main_groups <- inflation_categories %>%
   filter(PosType == "2") %>%
@@ -84,19 +104,32 @@ write.csv(inflation_treiber,file="Output/inflation_treiber.csv",row.names = FALS
 
 
 ###Inflation in Europa
-europe_data <- read_csv("Daten/prc_hicp_manr__custom_118059_page_linear.csv")
+#europe_data <- read_csv("Daten/prc_hicp_manr__custom_118059_page_linear.csv")
 
 month <- format(Sys.Date()-30,"%m")
 year <- format(Sys.Date()-30,"%Y")
 monat <- paste0(year,"-",month,"-01")
+
+#Get Inflationsdaten von Eurostat
+get_query <- paste0("https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/PRC_HICP_MANR/M.RCH_A.CP00.EU+EA+BE+BG+CZ+DK+DE+EE+IE+EL+ES+FR+HR+IT+CY+LV+LT+LU+HU+MT+NL+AT+PL+PT+RO+SI+SK+FI+SE+UK+EEA+IS+NO+CH+MK+RS+TR+US/?format=SDMX-CSV&startPeriod=2015-01&endPeriod=",
+                    year,"-",month)
+query_output <- GET(get_query)
+europe_data <- read_csv(query_output$content)
 
 europe_data_month <- europe_data %>%
   filter(TIME_PERIOD == substring(monat,1, nchar(monat)-3)) %>%
   select(geo,OBS_VALUE)
 
 #Add Swiss Value
-hvpi_data <- read_excel("Daten/cc-d-05.08.10.xlsx", 
-                               sheet = 3)
+hvpi_data_get <- GET("https://dam-api.bfs.admin.ch/hub/api/dam/assets/22987815/master")
+hvpi_data_raw <- content(hvpi_data_get)
+
+filename <- tempfile(fileext = ".xlsx")
+writeBin(hvpi_data_raw,filename)
+hvpi_data <- read_xlsx(path=filename,sheet = 3)
+
+#hvpi_data <- read_excel("Daten/cc-d-05.08.10.xlsx", 
+#                               sheet = 3)
 
 hvpi_data <- hvpi_data %>%
   filter(`Office fédéral de la statistique (OFS)` == year)

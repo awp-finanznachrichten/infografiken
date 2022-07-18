@@ -1,0 +1,16 @@
+BFS Konsumentenpreise: Durchschnittspreise Energie in CHF, Monatlich und Jährlich
+
+Gas (1 kWh)
+Fünf Verbrauchtypen, seit 2000
+
+Elektrizität (1 kWh)
+Sieben Verbrauchstypen, seit 2000
+
+Heizöl (100 l)
+Sieben Bezugsmengen-Typen, seit 2000
+
+Holz (Holzpellets 6000 kg)
+seit 2000
+
+Treibstoff (1 l)
+Bleifrei 95, Bleifrei 98, Diesel, seit 

@@ -22,12 +22,12 @@ energy_prices <- read_xlsx(path=filename,
 
 energy_prices$`Monat / Mois` <- as.Date(energy_prices$`Monat / Mois`)
 
-###Benzin letzte 5 Jahre
-fuel_last_five_years <- energy_prices %>%
-  filter(`Monat / Mois` > as.Date(paste0(as.numeric(year)-5,"-",month,"-01")),
+###Benzin letzte 3 Jahre
+fuel_last_three_years <- energy_prices %>%
+  filter(`Monat / Mois` > as.Date(paste0(as.numeric(year)-3,"-",month,"-01")),
          `Monat / Mois` <= as.Date(monat)) %>%
   select(`Monat / Mois`,
          `Bleifrei 95 / sans plomb 95`,
          Diesel)
 
-write.csv(fuel_last_five_years,file="Output/fuel_last_five_years.csv",row.names = FALSE)
+write.csv(fuel_last_three_years,file="Output/fuel_last_three_years.csv",row.names = FALSE)

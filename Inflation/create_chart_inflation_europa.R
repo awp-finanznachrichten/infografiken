@@ -9,15 +9,14 @@ library(lubridate)
 setwd("C:/Users/sw/OneDrive/R/infografiken/Inflation")
 datawrapper_auth("BMcG33cGBCp2FpqF1BSN5lHhKrw2W8Ait4AYbDEjkjVgCiWe07iqoX5pwHXdW36g", overwrite = TRUE)
 
-###Grafik Europa
-chart_id <- "klNuM"
-
-setwd("./Grafiken")
-
 #Monat und Jahr
 month <- month(Sys.Date()-30,label = TRUE,abbr=FALSE)
 year <- format(Sys.Date()-30,"%Y")
 
+###Grafik Europa Deutsch
+chart_id <- "klNuM"
+
+setwd("./Grafiken")
 
 ###Flexible Grafik-Bausteine erstellen
 undertitel_text <- paste0("<b>Harmonisierter Verbraucherpreisindex, ",month," ",year,"</b><br>
@@ -81,8 +80,8 @@ zip::zip(zipfile = 'Teuerung_Europa_all_DEU.zip',
          c("Teuerung_Europa_all.eps","Teuerung_Europa_all.svg","preview.jpg","metadata.properties"), mode="cherry-pick")
 
 #Daten hochladen
-ftp_adress <- "ftp://ftp.keystone.ch/Teuerung_Europa_all_DEU.zip"
-ftpUpload("Teuerung_Europa_all_DEU.zip", ftp_adress,userpwd="keyg_in:5r6368vz")
+#ftp_adress <- "ftp://ftp.keystone.ch/Teuerung_Europa_all_DEU.zip"
+#ftpUpload("Teuerung_Europa_all_DEU.zip", ftp_adress,userpwd="keyg_in:5r6368vz")
 
 setwd("..")
 setwd("..")

@@ -21,10 +21,11 @@ inflation_months <- read_xlsx(path=filename,
                               sheet = "VAR_m-12")
 
 #inflation_months <- read_excel("Daten/su-d-05.02.67.xlsx", 
-#                            sheet = "VAR_m-12")
+#                            sheet = "VAR_m-12"
+
 
 #Letzte 5 Jahre
-sequence_months <- seq(as.Date("2017-06-01"),as.Date(monat),by="month")
+sequence_months <- seq(as.Date(paste0(as.numeric(year)-5,"-",month,"-01")),as.Date(monat),by="month")
 values <- unlist(inflation_months[4,(ncol(inflation_months)-(length(sequence_months)-1)):ncol(inflation_months)])
 
 inflation_last_five_years <- data.frame(sequence_months,values)

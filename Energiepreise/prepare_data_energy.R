@@ -22,6 +22,7 @@ energy_prices <- read_xlsx(path=filename,
 
 energy_prices$`Monat / Mois` <- as.Date(energy_prices$`Monat / Mois`)
 
+
 ###Benzin letzte 3 Jahre
 fuel_last_three_years <- energy_prices %>%
   filter(`Monat / Mois` > as.Date(paste0(as.numeric(year)-3,"-",month,"-01")),
@@ -31,3 +32,14 @@ fuel_last_three_years <- energy_prices %>%
          Diesel)
 
 write.csv(fuel_last_three_years,file="Output/fuel_last_three_years.csv",row.names = FALSE)
+
+###Heizöl letzte 3 Jahre
+
+
+oil_last_three_years <- energy_prices %>%
+  filter(`Monat / Mois` > as.Date(paste0(as.numeric(year)-3,"-",month,"-01")),
+         `Monat / Mois` <= as.Date(monat))
+
+oil_last_three_years <- oil_last_three_years[,c(1,16)]
+
+write.csv(oil_last_three_years,file="Output/oil_last_three_years.csv",row.names = FALSE)

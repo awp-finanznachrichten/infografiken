@@ -15,6 +15,7 @@ get_query <- paste0("https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/da
 query_output <- GET(get_query)
 europe_data <- read_csv(query_output$content)
 
+
 ###Inflation in Europa
 #europe_data <- read_csv("Daten/prc_hicp_manr__custom_118059_page_linear.csv")
 

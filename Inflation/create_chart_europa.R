@@ -20,7 +20,7 @@ year <- format(Sys.Date()-30,"%Y")
 
 
 ###Flexible Grafik-Bausteine erstellen
-undertitel_text <- paste0("<b>Harmonisierter Verbraucherpreisindex der Eurozone, ",month," ",year,"</b><br>
+undertitel_text <- paste0("<b>Harmonisierter Verbraucherpreisindex, ",month," ",year,"</b><br>
                            Die Schweizer Inflation wurde zwecks Vergleichbarkeit an die Eurostat-Methodik angepasst.")
 
 #Text in Grafik anpassen
@@ -81,8 +81,8 @@ zip::zip(zipfile = 'Teuerung_Europa_all_DEU.zip',
          c("Teuerung_Europa_all.eps","Teuerung_Europa_all.svg","preview.jpg","metadata.properties"), mode="cherry-pick")
 
 #Daten hochladen
-#ftp_adress <- "ftp://ftp.keystone.ch/Teuerung_Europa_all_DEU.zip"
-#ftpUpload("Teuerung_Europa_all_DEU.zip", ftp_adress,userpwd="keyg_in:5r6368vz")
+ftp_adress <- "ftp://ftp.keystone.ch/Teuerung_Europa_all_DEU.zip"
+ftpUpload("Teuerung_Europa_all_DEU.zip", ftp_adress,userpwd="keyg_in:5r6368vz")
 
 setwd("..")
 setwd("..")

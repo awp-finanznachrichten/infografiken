@@ -24,7 +24,6 @@ energy_prices <- read_xlsx(path=filename,
 
 energy_prices$`Monat / Mois` <- as.Date(energy_prices$`Monat / Mois`)
 
-
 ###Benzin letzte 3 Jahre
 fuel_last_three_years <- energy_prices %>%
   filter(`Monat / Mois` > as.Date(paste0(as.numeric(year)-3,"-",month,"-01")),
@@ -44,7 +43,16 @@ oil_last_three_years <- oil_last_three_years[,c(1,16)]
 
 write.csv(oil_last_three_years,file="Output/oil_last_three_years.csv",row.names = FALSE)
 
-#Benzinpreise Europa
+#Gas letzte 3 Jahre
+gas_last_three_years <- energy_prices %>%
+  filter(`Monat / Mois` > as.Date(paste0(as.numeric(year)-3,"-",month,"-01")),
+         `Monat / Mois` <= as.Date(monat))
+
+gas_last_three_years <- gas_last_three_years[,c(1,3)]
+
+write.csv(gas_last_three_years,file="Output/gas_last_three_years.csv",row.names = FALSE)
+
+###Benzinpreise Europa
 
 #Daten holen von TCS-Seite
 url <- "https://www.tcs.ch/de/camping-reisen/reiseinformationen/wissenswertes/fahrkosten-gebuehren/benzinpreise.php"
@@ -89,3 +97,4 @@ fuel_prices <- fuel_prices %>%
   arrange(`Bleifrei 95`)
 
 write.csv(fuel_prices,file="Output/fuel_prices_europe.csv",row.names = FALSE)
+

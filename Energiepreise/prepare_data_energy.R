@@ -50,6 +50,10 @@ gas_last_three_years <- energy_prices %>%
 
 gas_last_three_years <- gas_last_three_years[,c(1,3)]
 
+colnames(gas_last_three_years) <- c("Monat","Preis")
+gas_last_three_years$Preis <- as.numeric(gas_last_three_years$Preis)*20000
+
+
 write.csv(gas_last_three_years,file="Output/gas_last_three_years.csv",row.names = FALSE)
 
 ###Benzinpreise Europa

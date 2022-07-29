@@ -6,6 +6,7 @@ library(httr)
 library(rvest)
 library(stringr)
 
+
 setwd("C:/Users/simon/OneDrive/R/infografiken/Energiepreise")
 
 ###Verlauf Jahresteuerung
@@ -101,4 +102,3 @@ fuel_prices <- fuel_prices %>%
   arrange(`Bleifrei 95`)
 
 write.csv(fuel_prices,file="Output/fuel_prices_europe.csv",row.names = FALSE)
-
